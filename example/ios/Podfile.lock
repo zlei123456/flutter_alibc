@@ -1,22 +1,58 @@
 PODS:
+  - AliAuthSDK (2.0.0.3)
+  - AlibcTradeSDK (4.0.0.8)
+  - AliLinkPartnerSDK (4.0.0.24)
+  - AlipaySDK (2.0.0-bc)
+  - BCUserTrack (5.2.0.11-appkeys):
+    - UTDID
   - Flutter (1.0.0)
   - flutter_alibc (0.0.1):
+    - AliAuthSDK (~> 2.0.0.3)
+    - AlibcTradeSDK (~> 4.0.0.8)
+    - AliLinkPartnerSDK (~> 4.0.0.24)
+    - AlipaySDK (~> 2.0.0-bc)
+    - BCUserTrack (~> 5.2.0.11-appkeys)
     - Flutter
+    - mtopSDK (~> 3.0.0.4)
+    - securityGuard (~> 5.4.173)
+    - UTDID (~> 1.1.0.16)
+  - mtopSDK (3.0.0.4)
+  - securityGuard (5.4.173)
+  - UTDID (1.1.0.16)
 
 DEPENDENCIES:
-  - Flutter (from `.symlinks/flutter/ios`)
+  - Flutter (from `Flutter`)
   - flutter_alibc (from `.symlinks/plugins/flutter_alibc/ios`)
+
+SPEC REPOS:
+  http://repo.baichuan-ios.taobao.com/baichuanSDK/AliBCSpecs.git:
+    - AliAuthSDK
+    - AlibcTradeSDK
+    - AliLinkPartnerSDK
+    - AlipaySDK
+    - BCUserTrack
+    - mtopSDK
+    - securityGuard
+    - UTDID
 
 EXTERNAL SOURCES:
   Flutter:
-    :path: ".symlinks/flutter/ios"
+    :path: Flutter
   flutter_alibc:
     :path: ".symlinks/plugins/flutter_alibc/ios"
 
 SPEC CHECKSUMS:
+  AliAuthSDK: be6caff0bb645ad663c75f311170b2a3b069780e
+  AlibcTradeSDK: 72d36e433ecfbd4c78b5199f0db4f70fd4be374b
+  AliLinkPartnerSDK: c5778cdfdcee7bfe342238d39a77766184d36a46
+  AlipaySDK: a40a4099b24328d90d7ba4fb67f6ce753d7fa2c7
+  BCUserTrack: f267dfb52a6e67603c33668f2e9384ee01b68a88
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  flutter_alibc: 2041d1c902019de53fead0ef952f9dfe26018777
+  flutter_alibc: 5633a053fe21fa3a0d2b2a0a1d9dbdf15259d77c
+  mtopSDK: bf447d4361b0199790e2a2829a1cc0299df71716
+  securityGuard: 35d3a1b5877bb2de4698a78089eb8906fa3ad27b
+  UTDID: c28855683c5ea2e77e597cb14609328f7d470d6e
 
-PODFILE CHECKSUM: 7fb83752f59ead6285236625b82473f90b1cb932
+PODFILE CHECKSUM: a6085399a5e9154ae3bcc30706a1b711901445f3
 
 COCOAPODS: 1.8.4

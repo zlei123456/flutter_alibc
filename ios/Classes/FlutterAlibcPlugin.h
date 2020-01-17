@@ -1,4 +1,4 @@
 #import <Flutter/Flutter.h>
 
-@interface FlutterAlibcPlugin : NSObject<FlutterPlugin,FlutterStreamHandler>
+@interface FlutterAlibcPlugin : NSObject<FlutterPlugin>
 @end
