@@ -19,6 +19,8 @@ class FlutterAlibcHandle: NSObject {
     //    MARK: - 对flutter暴露的方法
     //    MARK:  初始化阿里百川
     public func initAlibc(call : FlutterMethodCall , result : @escaping FlutterResult){
+        //        线上环境
+        AlibcTradeSDK.sharedInstance()?.setEnv(AlibcEnvironment.release)
         let version : String = getStringFromCall(key: "version", call: call);
         let appName : String = getStringFromCall(key: "appName", call: call);
         //        判断是否存在
@@ -30,8 +32,6 @@ class FlutterAlibcHandle: NSObject {
         }
         //        开发阶段打开日志开关
         AlibcTradeSDK.sharedInstance()?.setDebugLogOpen(true)
-        //        线上环境
-        AlibcTradeSDK.sharedInstance()?.setEnv(AlibcEnvironment.release)
         
         //        初始化
         AlibcTradeSDK.sharedInstance()?.asyncInit(success: {
@@ -46,6 +46,7 @@ class FlutterAlibcHandle: NSObject {
     public func loginTaoBao(call : FlutterMethodCall , result : @escaping FlutterResult){
         //        判断是否登录
         if(!(ALBBSession.sharedInstance()?.isLogin())!){
+//            ALBBAccountAuthOption
             ALBBSDK.sharedInstance()?.setAuthOption(NormalAuth)
             //            根视图
             let rootViewController : UIViewController = UIApplication.shared.windows.last!.rootViewController!
@@ -64,7 +65,7 @@ class FlutterAlibcHandle: NSObject {
                             "topAuthCode":userInfo.topAuthCode,]
                 ])
             }, failureCallback: { (session, error) in
-                let dic = [FlutterAlibcConstKey.ErrorCode :String((error! as NSError).code) ,FlutterAlibcConstKey.ErrorMessage:error?.localizedDescription] as! Dictionary<String,String>
+                let dic = [FlutterAlibcConstKey.ErrorCode :String((error! as NSError).code) ,FlutterAlibcConstKey.ErrorMessage: String(error!.localizedDescription)]
                 result(dic);
             })
         }
