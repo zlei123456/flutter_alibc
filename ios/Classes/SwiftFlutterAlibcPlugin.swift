@@ -24,6 +24,12 @@ public class SwiftFlutterAlibcPlugin: NSObject, FlutterPlugin {
             result("iOS " + UIDevice.current.systemVersion)
         } else if call.method == "initAlibc"{
             alibchandler?.initAlibc(call: call, result: result)
+        } else if call.method == "loginTaoBao" {
+            alibchandler?.loginTaoBao(call: call, result: result)
+        } else if call.method == "taoKeLogin" {
+            alibchandler?.taoKeLogin(call: call, result: result)
+        }else if call.method == "loginOut" {
+            alibchandler?.loginOut(call: call, result: result)
         }
     }
     
