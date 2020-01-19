@@ -8,7 +8,7 @@
 import Foundation
 
 struct FlutterAlibcConstKey {
-    let ErrorCode :String = "errorCode"
-    let ErrorMessage:String  = "errorMessage"
-    let Data: String = "errorCode"
+    static let ErrorCode :String = "errorCode"
+    static let ErrorMessage:String  = "errorMessage"
+    static let Data: String = "errorCode"
 }
