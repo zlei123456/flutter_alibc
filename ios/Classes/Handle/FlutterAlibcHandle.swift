@@ -16,9 +16,9 @@ class FlutterAlibcHandle: NSObject {
     //        _flutterAlibcChannel = flutterAlibcChannel
     //    }
     
-    //    MARK --对flutter暴露的方法
-    //    MARK -- 初始化阿里百川
-    public func initAlibc(call : FlutterMethodCall , result : FlutterResult){
+    //    MARK: - 对flutter暴露的方法
+    //    MARK:  初始化阿里百川
+    public func initAlibc(call : FlutterMethodCall , result : @escaping FlutterResult){
         let version : String = getStringFromCall(key: "version", call: call);
         let appName : String = getStringFromCall(key: "appName", call: call);
         //        判断是否存在
@@ -35,11 +35,39 @@ class FlutterAlibcHandle: NSObject {
         
         //        初始化
         AlibcTradeSDK.sharedInstance()?.asyncInit(success: {
-            let dic = [FlutterAlibcConstKey.ErrorCode :"0",FlutterAlibcConstKey.ErrorMessage:"success"] as! Dictionary<String,String>
-//            result(dic)
+            let dic = [FlutterAlibcConstKey.ErrorCode :"0",FlutterAlibcConstKey.ErrorMessage:"success"]
+            result(dic);
         }, failure: { (error) in
-//             result(@{FlutterAlibcConstKey_ErrorCode:[NSString stringWithFormat: @"%ld", (long)error.code],FlutterAlibcConstKey_ErrorMessage:error.description});
+            let dic = [FlutterAlibcConstKey.ErrorCode :String((error! as NSError).code) ,FlutterAlibcConstKey.ErrorMessage:error?.localizedDescription] as! Dictionary<String,String>
+            result(dic);
         })
+    }
+    //    MARK:  淘宝登录
+    public func loginTaoBao(call : FlutterMethodCall , result : @escaping FlutterResult){
+        //        判断是否登录
+        if(!(ALBBSession.sharedInstance()?.isLogin())!){
+            ALBBSDK.sharedInstance()?.setAuthOption(NormalAuth)
+            //            根视图
+            let rootViewController : UIViewController = UIApplication.shared.windows.last!.rootViewController!
+            ALBBSDK.sharedInstance()?.auth(rootViewController, successCallback: { (session) in
+                let userInfo : ALBBUser = (session?.getUser())!
+                result([FlutterAlibcConstKey.ErrorCode : "0",
+                        FlutterAlibcConstKey.ErrorMessage:"success",
+                        FlutterAlibcConstKey.Data :[
+//                            昵称
+                            "nick":userInfo.nick,
+//                            头像地址
+                            "avatarUrl":userInfo.avatarUrl,
+                            "openId":userInfo.openId,
+                            "openSid":userInfo.openSid,
+                            "topAccessToken":userInfo.topAccessToken,
+                            "topAuthCode":userInfo.topAuthCode,]
+                ])
+            }, failureCallback: { (session, error) in
+                let dic = [FlutterAlibcConstKey.ErrorCode :String((error! as NSError).code) ,FlutterAlibcConstKey.ErrorMessage:error?.localizedDescription] as! Dictionary<String,String>
+                           result(dic);
+            })
+        }
     }
     
     
