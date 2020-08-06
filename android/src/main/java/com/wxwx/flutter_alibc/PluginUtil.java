@@ -5,6 +5,7 @@ import com.alibaba.baichuan.android.trade.model.OpenType;
 import com.alibaba.baichuan.trade.biz.applink.adapter.AlibcFailModeType;
 import com.alibaba.baichuan.trade.biz.core.taoke.AlibcTaokeParams;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -42,11 +43,16 @@ public class PluginUtil {
 
     public static AlibcTaokeParams getTaokeParams(Map<String, Object> taokePar){
         String pid = (String) taokePar.get("pid");
+        String appKey = (String) taokePar.get("appKey");
         AlibcTaokeParams taokeParams = new AlibcTaokeParams("", "", "");
         if (pid != null){
             taokeParams.setPid(pid);
         }
-        Object extParams = taokePar.get("extParams");
+        if (appKey != null){
+            taokeParams.extraParams = new HashMap<>();
+            taokeParams.extraParams.put("taokeAppkey", appKey);
+        }
+        // Object extParams = taokePar.get("extParams");
         //TODO 其他参数待添加
         return taokeParams;
     }

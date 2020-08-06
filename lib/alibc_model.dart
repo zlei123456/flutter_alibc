@@ -43,8 +43,9 @@ class TaokeParams {
   String unionId;
   String subPid;
   Map extParams;
+  String appKey;
   TaokeParams(
-      {this.adzoneId, this.pid, this.unionId, this.subPid, this.extParams});
+      {this.adzoneId, this.pid, this.unionId, this.subPid, this.extParams, this.appKey});
 }
 
 // url打开或者page打开等的数据

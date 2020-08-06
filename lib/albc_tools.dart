@@ -54,6 +54,7 @@ class AlibcTools {
         "pid": taokeParams.pid ?? "",
         "unionId": taokeParams.unionId ?? "",
         "subPid": taokeParams.subPid ?? "",
+        "appKey": taokeParams.appKey ?? "",
         "extParams": taokeParams.extParams ?? {}
       };
     }

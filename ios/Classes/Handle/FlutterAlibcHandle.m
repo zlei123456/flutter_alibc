@@ -404,17 +404,20 @@ FlutterMethodChannel *_flutterAlibcChannel = nil;
 #pragma mark --设置淘客参数
 - (AlibcTradeTaokeParams *)getTaokeParams:(FlutterMethodCall *)call{
     AlibcTradeTaokeParams *taoke = [[AlibcTradeTaokeParams alloc] init];
-    if (call.arguments[@"taoKeParams"] == nil || [call.arguments[@"taoKeParams"] isKindOfClass:[NSNull class]]) {
+    if (call.arguments[@"taokeParams"] == nil || [call.arguments[@"taokeParams"] isKindOfClass:[NSNull class]]) {
         return nil;
     }
-    NSDictionary *taoKeParams = call.arguments[@"taoKeParams"];
+    NSDictionary *taoKeParams = call.arguments[@"taokeParams"];
     taoke.adzoneId = (taoKeParams[@"adzoneId"] == (id) [NSNull null]) ? nil : taoKeParams[@"adzoneId"];
     taoke.pid = (taoKeParams[@"pid"] == (id) [NSNull null]) ? nil : taoKeParams[@"pid"];
     //有adzoneId则pid失效
     taoke.unionId = (taoKeParams[@"unionId"] == (id) [NSNull null]) ? nil : taoKeParams[@"unionId"];
     taoke.subPid = (taoKeParams[@"subPid"] == (id) [NSNull null]) ? nil : taoKeParams[@"subPid"];
     //    必须是dic
-    taoke.extParams = (taoKeParams[@"extParams"] == (id) [NSNull null]) ? nil : taoKeParams[@"extParams"];
+//    taoke.extParams = (taoKeParams[@"extParams"] == (id) [NSNull null]) ? nil : taoKeParams[@"extParams"];
+    if (taoKeParams[@"appKey"]) {
+        taoke.extParams = @{@"taokeAppkey": taoKeParams[@"appKey"]};
+    }
     
     //    判断这玩意是什么格式，dic就直接赋值，jsoÏn需要转dic
     //    if ([extParams isKindOfClass:[NSDictionary class]]) {
