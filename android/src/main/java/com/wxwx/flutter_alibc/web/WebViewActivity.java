@@ -95,6 +95,14 @@ public class WebViewActivity extends Activity {
         WebViewClient client = new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (url.contains("tbopen30854051")){
+                    String accessToken = "12"; // getAccessToken(url);
+                    if (callBack != null){
+                        callBack.success(accessToken);
+                        callBack = null;
+                    }
+                    finish();
+                }
                 return false;
             }
 
@@ -102,8 +110,8 @@ public class WebViewActivity extends Activity {
             public void onLoadResource(WebView view, String url) {
                 super.onLoadResource(view, url);
                 //如果包含
-                if (url.contains("access_token")){
-                    String accessToken = getAccessToken(url);
+                if (url.contains("tbopen30854051")){
+                    String accessToken = "12"; // getAccessToken(url);
                     if (callBack != null){
                         callBack.success(accessToken);
                         callBack = null;
